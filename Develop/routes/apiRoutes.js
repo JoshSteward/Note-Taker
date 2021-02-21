@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const data = require('../db/db.json');
+console.log("data: ", data);
 
 module.exports = (app) => {
     
@@ -9,6 +10,7 @@ module.exports = (app) => {
     fs.readFile('db/db.json',"utf8",(error, indexData) => {
       if (error) throw error
       var data = JSON.parse(indexData);
+      console.log(data);
     });
    
 
@@ -20,8 +22,8 @@ module.exports = (app) => {
     // Below code handles when a user submits a form and thus submits data to the server.
     app.post('/api/notes', (req,res) => {
       let newNote = req.body; 
-      indexData.push(newNote);
-      fs.writeFile("db/db.json",JSON.stringify(notes,'\t'),err => {
+      data.push(newNote);
+      fs.writeFile("db/db.json",JSON.stringify(data,'\t'),error => {
         if (error) throw error;
         return true;
       });
