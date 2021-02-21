@@ -1,5 +1,4 @@
 //require index.js file
-const indexData = require('../db/db.json');
 const fs = require('fs');
 const path = require('path');
 
