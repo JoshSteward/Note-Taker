@@ -6,8 +6,8 @@ const path = require('path');
 module.exports = (app) => {
     
       // API GET Requests
-    fs.readFile('/db/db.json',"utf8",(error, indexData) => {
-      if (err) throw err
+    fs.readFile('db/db.json',"utf8",(error, indexData) => {
+      if (error) throw error
       var data = JSON.parse(indexData);
     });
    
@@ -18,11 +18,11 @@ module.exports = (app) => {
 
     //POST
     // Below code handles when a user submits a form and thus submits data to the server.
-    app.post('.api/notes', (req,res) => {
+    app.post('/api/notes', (req,res) => {
       let newNote = req.body; 
       indexData.push(newNote);
       fs.writeFile("db/db.json",JSON.stringify(notes,'\t'),err => {
-        if (err) throw err;
+        if (error) throw error;
         return true;
       });
       console.log("Note added")      
