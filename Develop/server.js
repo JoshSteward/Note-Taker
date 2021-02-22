@@ -1,6 +1,6 @@
 //setup npm express package 
 const express = require('express');
-
+//module.exports = router;
 const app = express();
 
 //setup port 
@@ -15,11 +15,14 @@ app.use(express.json());
 
 //require roots for both api and html 
 //these may require (app) after () however port only worked when removed
-const apiRoutes = require('./routes/apiRoutes')(app);
-const htmlRoutes = require('./routes/htmlRoutes')(app);
+require('./routes/apiRoutes')(app);
+require('./routes/htmlRoutes')(app);
 
-app.use('/api', apiRoutes);
-app.use('/',htmlRoutes);
+//app.use('/api', apiRoutes);
+//app.use('/', htmlRoutes);
+
+//app.use(app.router);
+//routes.initialize(app);
 
 //create port 
 app.listen(PORT, () => {
