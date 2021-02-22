@@ -15,8 +15,11 @@ app.use(express.json());
 
 //require roots for both api and html 
 //these may require (app) after () however port only worked when removed
-require('./routes/apiRoutes')(app);
-require('./routes/htmlRoutes')(app);
+const apiRoutes = require('./routes/apiRoutes')(app);
+const htmlRoutes = require('./routes/htmlRoutes')(app);
+
+app.use('/api', apiRoutes);
+app.use('/',htmlRoutes);
 
 //create port 
 app.listen(PORT, () => {
