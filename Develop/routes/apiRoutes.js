@@ -29,24 +29,24 @@ module.exports = (app) => {
       readFileAsync(path.join(__dirname, "./db/db.json"), "utf8")
       .then(function(data){
         noteHolder = JSON.parse(data);
-        if (newNote === 0 || newNote.id) {
-          let currentNote = noteHolder[newNote.id];
-          currentNote.title = newNote.title;
-          currentNote.text = newNote.text;
-        } else {
+        //if (newNote === 0 || newNote.id) {
+        //  let currentNote = noteHolder[newNote.id];
+         // currentNote.title = newNote.title;
+         // currentNote.text = newNote.text;
+       // } else {
           currentNote.push(newNote);
-        }
+       // }
         writefileAsync(path.join(__dirname, "./db/db.json"), JSON.stringify(currentNote))
                 .then(function () {
                     console.log("Wrote db.json");
       });
-      //console.log("newNote added");
-      //data.push(newNote);
-      //fs.writeFile("db/db.json",JSON.stringify(data,'\t'),error => {
-       // if (error) throw error;
-      //  return true;
-      //});
-      //console.log("Note added")      
+      console.log("newNote added");
+      data.push(newNote);
+      fs.writeFile("db/db.json",JSON.stringify(data,'\t'),error => {
+        if (error) throw error;
+        return true;
+      });
+      console.log("Note added")      
       //push new data into indexData     });
   //});
 
