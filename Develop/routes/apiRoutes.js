@@ -22,6 +22,7 @@ module.exports = (app) => {
     // Below code handles when a user submits a form and thus submits data to the server.
     app.post('/api/notes', (req,res) => {
       let newNote = req.body; 
+      console.log("newNote added");
       data.push(newNote);
       fs.writeFile("db/db.json",JSON.stringify(data,'\t'),error => {
         if (error) throw error;
