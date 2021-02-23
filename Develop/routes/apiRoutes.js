@@ -20,7 +20,8 @@ module.exports = (app) => {
   //use app.post to write file
   app.post('/api/notes', (req,res) => {
     let newNote = req.body; 
-    //newNote.id = getId(data);
+    console.log("newNote: " + newNote);
+    console.log("data: ", data);
     data.push(newNote);
     console.log("new note pushed");
       fs.writeFileSync(
@@ -31,6 +32,8 @@ module.exports = (app) => {
         if (err) throw err;
         }
       );
+      //without return data only moves into left column upon refreshing page 
+      return res.json(data);
   });
 }
 
