@@ -1,13 +1,42 @@
 //require index.js file
 const fs = require('fs');
 const path = require('path');
-const data = require('../db/db.json');
+
+
+const data = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '../db/db.json'), (err) => {
+  if (err) throw err;
+})
+);
+
 console.log("data: ", data);
-//module.exports = router;
-let noteHolder;
+
 
 
 module.exports = (app) => {
+  //use app.get
+  app.get('/api/notes', (req, res) => res.json(data));
+
+  //use app.post to write file
+  app.post('/api/notes', (req,res) => {
+    let newNote = req.body; 
+    //newNote.id = getId(data);
+    data.push(newNote);
+    console.log("new note pushed");
+      fs.writeFileSync(
+        path.join(__dirname,"../db/db.json"),
+        JSON.stringify(data),
+        console.log("data passed through JSON.stringify"),
+        err => {
+        if (err) throw err;
+        }
+      );
+  });
+}
+
+
+/* 
+
     
       // API GET Requests
     fs.readFile('db/db.json',"utf8",(error, indexData) => {
@@ -17,23 +46,14 @@ module.exports = (app) => {
       console.log(data);
     });
    
-
-    // Below code handles when users "visit" a page.
-    // In each of the below cases when a user visits a link
-    app.get('/api/notes', (req, res) => res.json(data));
-
     //POST
     // Below code handles when a user submits a form and thus submits data to the server.
     app.post('/api/notes', (req,res) => {
       let newNote = req.body; 
       readFileAsync(path.join(__dirname, "./db/db.json"), "utf8")
       .then(function(data){
-        noteHolder = JSON.parse(data);
-        //if (newNote === 0 || newNote.id) {
-        //  let currentNote = noteHolder[newNote.id];
-         // currentNote.title = newNote.title;
-         // currentNote.text = newNote.text;
-       // } else {
+        //noteHolder = JSON.parse(data);
+        
           currentNote.push(newNote);
        // }
         writefileAsync(path.join(__dirname, "./db/db.json"), JSON.stringify(currentNote))
@@ -57,4 +77,4 @@ module.exports = (app) => {
   }
 
 
-
+*/ 
