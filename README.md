@@ -46,7 +46,9 @@ stewardjosh10@gmail.com
 ## Repository 
 
 https://stormy-savannah-26157.herokuapp.com/
+<br>
 https://github.com/JoshSteward/Note-Taker
+<br>
 https://joshsteward.github.io/Note-Taker/
 
 ## Github
