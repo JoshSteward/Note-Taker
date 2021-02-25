@@ -35,6 +35,32 @@ module.exports = (app) => {
       //without return data only moves into left column upon refreshing page 
       return res.json(data);
   });
+
+   // Retrieves a note with specific id
+   app.get("api/notes/:id", function(req,res) {
+    // display json for the notes array indices of the provided id
+    res.json(data[req.params.id]);
+    console.log("you just selected an item")
+   });
+
+  /*
+    app.delete('/api/notes/:id', (req, res) => res.json(data));
+    let newNote = data(req.params.id; 
+    let newId = 0;
+    for (i = 0; i < data.length; i++) {
+      if (i === newNote) {
+        data.splice(newNote)
+        console.log("note deleted");
+        fs.writeFileSync(
+          path.join(__dirname,"../db/db.json"),
+          JSON.stringify(data),
+          console.log("data passed through JSON.stringify"),
+          err => {
+          if (err) throw err;
+          });
+      }
+    }
+    */
 }
 
 
